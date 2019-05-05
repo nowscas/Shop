@@ -1,4 +1,4 @@
-package com.nowscas.Furniture_Shop;
+package com.nowscas.Furniture_Shop.controller;
 
 import com.nowscas.Furniture_Shop.domain.MainPageCard;
 import com.nowscas.Furniture_Shop.repos.MainPageCardRepo;
@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import java.util.Map;
 
 @Controller
-public class GreetingController {
+public class MainController {
     @Autowired
     private MainPageCardRepo mainPageCardRepo;
 
