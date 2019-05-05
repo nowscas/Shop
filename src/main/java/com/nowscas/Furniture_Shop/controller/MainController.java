@@ -1,7 +1,6 @@
 package com.nowscas.Furniture_Shop.controller;
 
-import com.nowscas.Furniture_Shop.domain.MainPageCard;
-import com.nowscas.Furniture_Shop.repos.MainPageCardRepo;
+import com.nowscas.Furniture_Shop.service.MainPageCardService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,7 +12,7 @@ import java.util.Map;
 @Controller
 public class MainController {
     @Autowired
-    private MainPageCardRepo mainPageCardRepo;
+    private MainPageCardService mainPageCardService;
 
     @GetMapping("/")
     public String greeting(Map<String, Object> model) {
@@ -22,21 +21,15 @@ public class MainController {
 
     @GetMapping("/main")
     public String main(Map<String, Object> model) {
-        Iterable<MainPageCard> cards = mainPageCardRepo.findAll();
-        model.put("cards", cards);
+        model.put("cards", mainPageCardService.getAllMainPageCards());
         return "main";
     }
 
     @PostMapping("/main")
     public String addCard(
             @RequestParam String header,
-            @RequestParam String text,
-            Map<String, Object> model) {
-        MainPageCard mainPageCard = new MainPageCard(header, text);
-        mainPageCardRepo.save(mainPageCard);
-
-        Iterable<MainPageCard> cards = mainPageCardRepo.findAll();
-        model.put("cards", cards);
-        return "main";
+            @RequestParam String text) {
+        mainPageCardService.addMainPageCard(header, text);
+        return "redirect:/main";
     }
 }
