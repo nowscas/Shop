@@ -10,6 +10,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.Collections;
+import java.util.Map;
 
 @Service
 public class UserService implements UserDetailsService {
@@ -23,6 +24,7 @@ public class UserService implements UserDetailsService {
 
     public void addUser(User user) {
         user.setRoles(Collections.singleton(Role.USER));
+        user.setBlocked(false);
         userRepo.save(user);
     }
 
@@ -34,5 +36,22 @@ public class UserService implements UserDetailsService {
     public boolean ifUserExist(User user) {
         User userFromDb = userRepo.findByUsername(user.getUsername());
         return userFromDb == null;
+    }
+
+    public Iterable<User> getAllUsers() {
+        return userRepo.findAll();
+    }
+
+    public void saveChanged(String username, Map<String, String> form, User user) {
+        user.setUsername(username);
+        for (Map.Entry<String, String> entry : form.entrySet()) {
+            if (entry.getKey().equals("blocked") && entry.getValue().equals("on")) {
+                user.setBlocked(true);
+                break;
+            } else {
+                user.setBlocked(false);
+            }
+        }
+        userRepo.save(user);
     }
 }
