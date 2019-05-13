@@ -12,6 +12,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import java.util.Collections;
 import java.util.Map;
 
+/**
+ * Класс обрабатывает запросы касающиеся регистрации.
+ */
 @Controller
 public class RegistrationController {
     @Autowired
@@ -19,11 +22,22 @@ public class RegistrationController {
     @Autowired
     private UserService userService;
 
+    /**
+     * Метод возвращает страницу регистрации.
+     * @return
+     */
     @GetMapping("/registration")
     public String registration() {
         return "registration";
     }
 
+
+    /**
+     * Метод сохраняет нового пользователя в БД.
+     * @param user
+     * @param model
+     * @return
+     */
     @PostMapping("/registration")
     public String addUser(User user, Map<String, Object> model) {
 

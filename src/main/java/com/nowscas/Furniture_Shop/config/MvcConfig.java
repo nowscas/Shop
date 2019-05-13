@@ -6,15 +6,27 @@ import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
+/**
+ * Класс содержащий конфигурацию web-слоя.
+ */
 @Configuration
 public class MvcConfig implements WebMvcConfigurer {
     @Value("${upload.path}")
     private String uploadPath;
 
+    /**
+     * На данный момент в методе используется только встроенная в Spring система авторизации,
+     * в которую передается путь обращения(/login) и шаблон страницы(login).
+     * @param registry
+     */
     public void addViewControllers(ViewControllerRegistry registry) {
         registry.addViewController("/login").setViewName("login");
     }
 
+    /**
+     * Метод перенаправляет по указанногму пути все обращения к серверу начинающиеся с определенных символов.
+     * @param registry
+     */
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry.addResourceHandler("/img/***")

@@ -11,6 +11,9 @@ import java.io.File;
 import java.io.IOException;
 import java.util.UUID;
 
+/**
+ * Класс для работы с карточками главной страницы.
+ */
 @Service
 public class MainPageCardService {
     @Value("${upload.path}")
@@ -19,10 +22,21 @@ public class MainPageCardService {
     @Autowired
     private MainPageCardRepo mainPageCardRepo;
 
+    /**
+     * Метод возвращает все записи карточек главной страницы.
+     * @return
+     */
     public Iterable<MainPageCard> getAllMainPageCards() {
         return mainPageCardRepo.findAll();
     }
 
+    /**
+     * Метод сохраняет новую запись карточки главной страницы.
+     * @param header
+     * @param text
+     * @param file
+     * @throws IOException
+     */
     public void addMainPageCard(String header, String text, MultipartFile file) throws IOException {
         MainPageCard mainPageCard = new MainPageCard(header, text);
         if (file.getSize() != 0 && !file.getOriginalFilename().isEmpty()) {

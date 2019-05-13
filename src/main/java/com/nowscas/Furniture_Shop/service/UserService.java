@@ -12,11 +12,20 @@ import org.springframework.stereotype.Service;
 import java.util.Collections;
 import java.util.Map;
 
+/**
+ * Класс для работы с пользователями.
+ */
 @Service
 public class UserService implements UserDetailsService {
     @Autowired
     private UserRepo userRepo;
 
+    /**
+     * Метод возвращает пользователя из БД по имени.
+     * @param username
+     * @return
+     * @throws UsernameNotFoundException
+     */
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         return userRepo.findByUsername(username);
@@ -38,10 +47,20 @@ public class UserService implements UserDetailsService {
         return userFromDb == null;
     }
 
+    /**
+     * Метод возвращает список всех пользователей.
+     * @return
+     */
     public Iterable<User> getAllUsers() {
         return userRepo.findAll();
     }
 
+    /**
+     * Метод сохраняет измененного пользователя.
+     * @param username
+     * @param form
+     * @param user
+     */
     public void saveChanged(String username, Map<String, String> form, User user) {
         user.setUsername(username);
         for (Map.Entry<String, String> entry : form.entrySet()) {
