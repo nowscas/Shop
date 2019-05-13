@@ -7,9 +7,10 @@
         <span><a href="/user">Список пользователей</a></span>
     </div>
     <div>
-        <form method="post">
+        <form method="post" enctype="multipart/form-data">
             <input type="text" name="header" placeholder="Введи заголовок" />
             <input type="text" name="text" placeholder="Введи текст" />
+            <input type="file" name="file">
             <input type="hidden" name="_csrf" value="${_csrf.token}" />
             <button type="submit">Добавить</button>
         </form>
@@ -21,6 +22,11 @@
         <b>${card.id}</b>
         <span>${card.cardHeader}</span>
         <span>${card.cardText}</span>
+        <div>
+            <#if card.cardImagePath??>
+                <img src="/img/${card.cardImagePath}">
+            </#if>
+        </div>
     </div>
     </#list>
 </@c.page>

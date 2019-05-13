@@ -1,7 +1,6 @@
 package com.nowscas.Furniture_Shop.controller;
 
 import com.nowscas.Furniture_Shop.domain.User;
-import com.nowscas.Furniture_Shop.repos.UserRepo;
 import com.nowscas.Furniture_Shop.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
