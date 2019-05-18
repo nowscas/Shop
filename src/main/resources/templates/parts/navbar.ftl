@@ -19,6 +19,7 @@
                     </button>
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                         <a class="dropdown-item" href="/user">Список пользователей</a>
+                        <a class="dropdown-item" href="/addMainPageCard">Добавить карточку главной страницы</a>
                     </div>
                 </div>
             </#if>
