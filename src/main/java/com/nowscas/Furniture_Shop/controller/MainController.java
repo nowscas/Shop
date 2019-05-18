@@ -17,23 +17,18 @@ public class MainController {
     private MainPageCardService mainPageCardService;
 
     @GetMapping("/")
-    public String greeting(Map<String, Object> model) {
-        return "greeting";
-    }
-
-    @GetMapping("/main")
     public String main(Map<String, Object> model) {
         model.put("cards", mainPageCardService.getAllMainPageCards());
         return "main";
     }
 
-    @PostMapping("/main")
+    @PostMapping("/")
     public String addCard(
             @RequestParam String header,
             @RequestParam String text,
             @RequestParam("file") MultipartFile file) throws IOException {
 
         mainPageCardService.addMainPageCard(header, text, file);
-        return "redirect:/main";
+        return "redirect:/";
     }
 }
