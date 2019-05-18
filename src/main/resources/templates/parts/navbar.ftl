@@ -10,12 +10,17 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item">
-                <a class="nav-link" href="/">Home</a>
+                <a class="nav-link" href="/">Главная</a>
             </li>
             <#if isAdmin>
-            <li class="nav-item">
-                <a class="nav-link" href="/user">User list</a>
-            </li>
+                <div class="dropdown open">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Меню администратора
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <a class="dropdown-item" href="/user">Список пользователей</a>
+                    </div>
+                </div>
             </#if>
         </ul>
 

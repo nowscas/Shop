@@ -13,8 +13,8 @@
         </div>
     </div>
     <input type="hidden" name="_csrf" value="${_csrf.token}" />
-    <#if !isRegisterForm><a href="/registration">Add new user</a></#if>
-    <button class="btn btn-primary" type="submit"><#if isRegisterForm>Create<#else>Sign In</#if></button>
+    <#if !isRegisterForm><a href="/registration">Регистрация</a></#if>
+    <button class="btn btn-primary" type="submit"><#if isRegisterForm>Create<#else>Войти</#if></button>
 </form>
 </#macro>
 
