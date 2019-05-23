@@ -2,6 +2,12 @@
 
 <@c.page>
 
+<link rel="stylesheet" href="/static/mainPageStyle.css">
+
+    <div class = "mainImage">
+        <img src="/img/testMainImage.png" width="100%">
+    </div>
+
     <div>Список карточек</div>
     <#list cards as card>
     <div>
