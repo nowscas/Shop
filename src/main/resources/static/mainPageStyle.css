@@ -1,4 +1,16 @@
 .mainImage {
-    text-align: center;
-    border: 6px solid black
+    margin-left: 15%;
+    width: 70%;
+    border: 6px solid black;
+}
+.underImageButtons {
+    margin-top: 2%;
+    margin-left: 25%;
+    width: 70%;
+}
+.btn{
+  outline: none;
+}
+.btn:hover{
+   background-color: black;
 }

@@ -4,8 +4,13 @@
 
 <link rel="stylesheet" href="/static/mainPageStyle.css">
 
-    <div class = "mainImage">
-        <img src="/img/testMainImage.png" width="100%">
+    <div>
+        <div class = "mainImage">
+            <img src="/img/testMainImage.png" width="100%" height="650px">
+        </div>
+        <div class = "underImageButtons">
+            <button type="button" class="btn btn-outline-dark">Позвонить нам</button>
+        </div>
     </div>
 
     <div>Список карточек</div>
