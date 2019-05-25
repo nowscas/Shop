@@ -8,8 +8,10 @@
         <div class = "mainImage">
             <img src="/img/testMainImage.png" width="100%">
         </div>
-            <button type="button" class="btn btn-outline-dark underImageLeftButtons">Позвонить нам</button>
-            <button type="button" class="btn btn-outline-dark underImageRightButtons">Заказать просчет</button>
+        <form method="get">
+            <button type="submit" formaction="/contacts" class="btn btn-outline-dark underImageLeftButtons">Позвонить нам</button>
+            <button type="submit" formaction="/calculator" class="btn btn-outline-dark underImageRightButtons">Заказать просчет</button>
+        </form>
     </div>
 
     <div>Список карточек</div>

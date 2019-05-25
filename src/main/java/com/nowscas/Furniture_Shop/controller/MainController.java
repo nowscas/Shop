@@ -17,4 +17,14 @@ public class MainController {
         model.put("cards", mainPageCardService.getAllMainPageCards());
         return "main";
     }
+
+    @GetMapping("/contacts")
+    public String contacts() {
+        return "contacts";
+    }
+
+    @GetMapping("/calculator")
+    public String calculator() {
+        return "calculator";
+    }
 }
