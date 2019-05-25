@@ -33,3 +33,6 @@
         </#if>
     </div>
 </nav>
+<div style = "text-align: center">
+    <a class="nav-link" style = "text-decoration: none; color: black;" href="/"><h1>Магазин Императрицы Прасковьи</h1></a>
+</div>

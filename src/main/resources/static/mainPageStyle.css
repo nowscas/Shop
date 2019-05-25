@@ -1,12 +1,17 @@
 .mainImage {
-    margin-left: 15%;
-    width: 70%;
+    margin-left: 5%;
+    width: 90%;
     border: 6px solid black;
 }
-.underImageButtons {
-    margin-top: 2%;
-    margin-left: 25%;
-    width: 70%;
+.underImageLeftButtons {
+    margin-left: 15%;
+    margin-top: 4%;
+    width: 20%
+}
+.underImageRightButtons {
+    margin-left: 30%;
+    margin-top: 4%;
+    width: 20%
 }
 .btn{
   outline: none;

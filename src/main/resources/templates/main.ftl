@@ -4,13 +4,12 @@
 
 <link rel="stylesheet" href="/static/mainPageStyle.css">
 
-    <div>
+    <div class = "container">
         <div class = "mainImage">
-            <img src="/img/testMainImage.png" width="100%" height="650px">
+            <img src="/img/testMainImage.png" width="100%">
         </div>
-        <div class = "underImageButtons">
-            <button type="button" class="btn btn-outline-dark">Позвонить нам</button>
-        </div>
+            <button type="button" class="btn btn-outline-dark underImageLeftButtons">Позвонить нам</button>
+            <button type="button" class="btn btn-outline-dark underImageRightButtons">Заказать просчет</button>
     </div>
 
     <div>Список карточек</div>
