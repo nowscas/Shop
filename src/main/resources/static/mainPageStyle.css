@@ -6,16 +6,32 @@
 .underImageLeftButtons {
     margin-left: 15%;
     margin-top: 4%;
-    width: 20%
+    margin-bottom: 2%;
+    width: 20%;
 }
 .underImageRightButtons {
     margin-left: 30%;
     margin-top: 4%;
-    width: 20%
+    margin-bottom: 2%;
+    width: 20%;
 }
 .btn{
   outline: none;
 }
 .btn:hover{
    background-color: black;
+}
+.secondLayer {
+    max-width: 100% !important;
+    background-color: #202120;
+    padding-top: 3%;
+}
+.assortLabel {
+    text-align: center;
+    color: white;
+    padding-bottom: 3%;
+}
+.assortCategories {
+    width: 80%;
+    margin-left: 10%;
 }

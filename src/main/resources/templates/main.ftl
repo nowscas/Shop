@@ -14,17 +14,21 @@
         </form>
     </div>
 
-    <div>Список карточек</div>
-    <#list cards as card>
-    <div>
-        <b>${card.id}</b>
-        <span>${card.cardHeader}</span>
-        <span>${card.cardText}</span>
-        <div>
-            <#if card.cardImagePath??>
-                <img src="/img/${card.cardImagePath}">
-            </#if>
-        </div>
+    <div class = "container secondLayer">
+         <div class = "assortLabel"><h3>Ассортимент</h3></div>
+
+         <div class = "card-deck assortCategories">
+            <#list cards as card>
+                <div class="card my-3" style = "min-width: 26%; max-width: 26%; margin-left: 16%">
+                    <div class="card-header">
+                        ${card.cardHeader}
+                    </div>
+                    <img src="/img/${card.cardImagePath}" class="card-img-top">
+                    <div class="m-2">
+                        ${card.cardText}
+                    </div>
+                </div>
+            </#list>
+         </div>
     </div>
-    </#list>
 </@c.page>
