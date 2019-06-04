@@ -34,7 +34,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                             "/contacts",
                             "/calculator",
                             "/static/***",
-                            "/img/***").permitAll()
+                            "/img/***",
+                            "/catImg/***").permitAll()
                     .anyRequest().authenticated()
                 .and()
                     .formLogin()

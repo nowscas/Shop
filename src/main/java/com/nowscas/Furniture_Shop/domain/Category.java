@@ -16,6 +16,7 @@ public class Category {
     private Long id;
 
     private String categoryName;
+    private String fileName;
 
     public Category(String categoryName) {
         this.categoryName = categoryName;
@@ -30,5 +31,13 @@ public class Category {
 
     public void setCategoryName(String categoryName) {
         this.categoryName = categoryName;
+    }
+
+    public String getFileName() {
+        return fileName;
+    }
+
+    public void setFileName(String fileName) {
+        this.fileName = fileName;
     }
 }

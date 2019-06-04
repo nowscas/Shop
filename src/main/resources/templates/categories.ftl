@@ -1,19 +1,20 @@
 <#import "parts/common.ftl" as c>
 
 <@c.page>
-    <div>
-        Добавить категорию
-        <form action="/categories" method="post">
-            <input type="text" name="categoryName" placeholder="Введите название" />
-            <input type="hidden" name="_csrf" value="${_csrf.token}" />
-            <button type="submit">Добавить</button>
-        </form>
-    </div>
-        <#list categories as category>
-            <div>
-                ${category.categoryName}
+
+    <a class="nav-link" style="color: #CD0303" href="/addCategory">Добавить категорию</a>
+    <#list categories as category>
+        <div class="row mb-4">
+            <div class="col-2">
+                <div style = "padding-top: 40%">
+                    ${category.categoryName}
+                </div>
             </div>
-        </#list>
+            <div class="col-4">
+                <img src="/catImg/${category.fileName}">
+            </div>
+        </div>
+    </#list>
     <div>
 
     </div>
