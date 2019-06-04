@@ -20,6 +20,7 @@
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                         <a class="dropdown-item" href="/user">Список пользователей</a>
                         <a class="dropdown-item" href="/addMainPageCard">Добавить карточку главной страницы</a>
+                        <a class="dropdown-item" href="/categories">Каталог категорий</a>
                     </div>
                 </div>
             </#if>
@@ -34,5 +35,5 @@
     </div>
 </nav>
 <div style = "text-align: center">
-    <a class="nav-link" style = "text-decoration: none; color: black;" href="/"><h1>Магазин Императрицы Прасковьи</h1></a>
+    <a class="nav-link" style = "text-decoration: none; color: black;" href="/"><h1>Мебель не от  бороды </h1></a>
 </div>

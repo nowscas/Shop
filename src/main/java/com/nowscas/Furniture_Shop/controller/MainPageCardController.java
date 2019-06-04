@@ -15,11 +15,23 @@ public class MainPageCardController {
     @Autowired
     private MainPageCardService mainPageCardService;
 
+    /**
+     * Метод возвращает страницу добавления карточки главной страницы.
+     * @return
+     */
     @GetMapping("/addMainPageCard")
     public String getAddCardPage() {
         return "addMainPageCard";
     }
 
+    /**
+     * Метод дает команду на сохранение карточки главной страницы в бд и возвращает главную страницу.
+     * @param header
+     * @param text
+     * @param file
+     * @return
+     * @throws IOException
+     */
     @PostMapping("/addMainPageCard")
     public String addMainPageCard(
             @RequestParam String header,
