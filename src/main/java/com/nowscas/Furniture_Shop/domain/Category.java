@@ -16,10 +16,12 @@ public class Category {
     private Long id;
 
     private String categoryName;
+    private String categoryDesc;
     private String fileName;
 
-    public Category(String categoryName) {
+    public Category(String categoryName, String categoryDesc){
         this.categoryName = categoryName;
+        this.categoryDesc = categoryDesc;
     }
 
     public Category() {
@@ -31,6 +33,14 @@ public class Category {
 
     public void setCategoryName(String categoryName) {
         this.categoryName = categoryName;
+    }
+
+    public String getCategoryDesc() {
+        return categoryDesc;
+    }
+
+    public void setCategoryDesc(String categoryDesc) {
+        this.categoryDesc = categoryDesc;
     }
 
     public String getFileName() {

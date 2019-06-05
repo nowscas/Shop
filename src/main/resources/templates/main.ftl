@@ -18,14 +18,14 @@
          <div class = "assortLabel"><h3>Ассортимент</h3></div>
 
          <div class = "card-deck assortCategories">
-            <#list cards as card>
+            <#list categories as category>
                 <div class="card my-3" style = "min-width: 26%; max-width: 26%; margin-left: 16%">
                     <div class="card-header">
-                        ${card.cardHeader}
+                        ${category.categoryName}
                     </div>
-                    <img src="/img/${card.cardImagePath}" class="card-img-top">
+                    <a href="/categoryPage/${category.id}"><img src="/img/${card.cardImagePath}" class="card-img-top"></a>
                     <div class="m-2">
-                        ${card.cardText}
+                        ${category.categoryDesc}
                     </div>
                 </div>
             </#list>

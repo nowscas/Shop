@@ -1,10 +1,12 @@
 package com.nowscas.Furniture_Shop.controller;
 
+import com.nowscas.Furniture_Shop.domain.Category;
 import com.nowscas.Furniture_Shop.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
@@ -28,9 +30,25 @@ public class CategoryController {
         return "categories";
     }
 
+    /**
+     * Метод возвращает страницу создания новой категории.
+     * @return
+     */
     @GetMapping("/addCategory")
     public String getAddPage() {
         return "addCategory";
+    }
+
+    /**
+     * Метод возвращает страницу с конкретной категорией.
+     * @param categoryId
+     * @param model
+     * @return
+      */
+    @GetMapping("/categoryPage/{category}")
+    public String getCategory(@PathVariable long categoryId, Model model) {
+        model.addAttribute("images", categoryService.getCategoryImages(categoryId));
+        return "categoryPage";
     }
 
     /**
@@ -41,13 +59,14 @@ public class CategoryController {
     @PostMapping("/addCategory")
     public String addCategory(
             @RequestParam String categoryName,
+            @RequestParam String categoryDesc,
             @RequestParam("file") MultipartFile file,
             Map<String, Object> model) throws IOException {
         if (file.isEmpty() || file.getSize() < 0 || !Objects.requireNonNull(file.getContentType()).contains("image")) {
             model.put("message", "Выбран не подходящий файл!");
             return "addCategory";
         } else {
-            categoryService.createCategory(categoryName, file);
+            categoryService.createCategory(categoryName, categoryDesc, file);
         }
         return "redirect:/categories";
     }

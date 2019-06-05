@@ -1,6 +1,8 @@
 package com.nowscas.Furniture_Shop.service;
 
 import com.nowscas.Furniture_Shop.domain.Category;
+import com.nowscas.Furniture_Shop.domain.CategoryImage;
+import com.nowscas.Furniture_Shop.repos.CategoryImageRepo;
 import com.nowscas.Furniture_Shop.repos.CategoryRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -23,6 +25,8 @@ public class CategoryService {
     private ImageService imageService;
     @Autowired
     private StringService stringService;
+    @Autowired
+    private CategoryImageRepo categoryImageRepo;
 
     @Value("${upload.categoryImagePath}")
     private String uploadPath;
@@ -39,8 +43,8 @@ public class CategoryService {
      * Метод сохраняет новую запись категории.
      * @param categoryName
      */
-    public void createCategory(String categoryName, MultipartFile file) throws IOException {
-        Category category = new Category(categoryName);
+    public void createCategory(String categoryName, String categoryDesc, MultipartFile file) throws IOException {
+        Category category = new Category(categoryName, categoryDesc);
 
         String filename = stringService.replaceChar(file.getOriginalFilename(), " ", "_");
         File uploadDir = new File(uploadPath);
@@ -56,5 +60,9 @@ public class CategoryService {
 
         category.setFileName(resultFilename);
         categoryRepo.save(category);
+    }
+
+    public Iterable<CategoryImage>getCategoryImages(long categoryId) {
+        return categoryImageRepo.findByCategoryId(categoryId);
     }
 }
