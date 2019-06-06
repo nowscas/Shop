@@ -41,13 +41,14 @@ public class CategoryController {
 
     /**
      * Метод возвращает страницу с конкретной категорией.
-     * @param categoryId
+     * @param category
      * @param model
      * @return
       */
     @GetMapping("/categoryPage/{category}")
-    public String getCategory(@PathVariable long categoryId, Model model) {
-        model.addAttribute("images", categoryService.getCategoryImages(categoryId));
+    public String getCategory(@PathVariable Category category, Model model) {
+        model.addAttribute("styles", categoryService.getCategoryStyles(category.getId()));
+        model.addAttribute("categoryId", category.getId());
         return "categoryPage";
     }
 
@@ -59,15 +60,38 @@ public class CategoryController {
     @PostMapping("/addCategory")
     public String addCategory(
             @RequestParam String categoryName,
-            @RequestParam String categoryDesc,
             @RequestParam("file") MultipartFile file,
             Map<String, Object> model) throws IOException {
         if (file.isEmpty() || file.getSize() < 0 || !Objects.requireNonNull(file.getContentType()).contains("image")) {
             model.put("message", "Выбран не подходящий файл!");
             return "addCategory";
         } else {
-            categoryService.createCategory(categoryName, categoryDesc, file);
+            categoryService.createCategory(categoryName, file);
         }
         return "redirect:/categories";
+    }
+
+    /**
+     * Метот дает команду на сохранение стиля категории в БД и возвращает страницу стилей категории.
+     * @param categoryStyleName
+     * @param categoryStyleDesc
+     * @param categoryId
+     * @param file
+     * @return
+     */
+    @PostMapping("/addCategoryStyle")
+    public String addCategoryStyle(
+            @RequestParam String categoryStyleName,
+            @RequestParam String categoryStyleDesc,
+            @RequestParam Long categoryId,
+            @RequestParam("file") MultipartFile file,
+            Map<String, Object> model) throws IOException {
+        if (file.isEmpty() || file.getSize() < 0 || !Objects.requireNonNull(file.getContentType()).contains("image")) {
+            model.put("message", "Выбран не подходящий файл!");
+            return "redirect:/categoryPage" + categoryId;
+        } else {
+            categoryService.createCategoryStyle(categoryStyleName, categoryStyleDesc, categoryId, file);
+        }
+        return "redirect:/categoryPage" + categoryId;
     }
 }

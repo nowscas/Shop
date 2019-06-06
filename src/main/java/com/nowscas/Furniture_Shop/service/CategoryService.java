@@ -1,9 +1,9 @@
 package com.nowscas.Furniture_Shop.service;
 
 import com.nowscas.Furniture_Shop.domain.Category;
-import com.nowscas.Furniture_Shop.domain.CategoryImage;
-import com.nowscas.Furniture_Shop.repos.CategoryImageRepo;
+import com.nowscas.Furniture_Shop.domain.CategoryStyle;
 import com.nowscas.Furniture_Shop.repos.CategoryRepo;
+import com.nowscas.Furniture_Shop.repos.CategoryStyleRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -26,7 +26,7 @@ public class CategoryService {
     @Autowired
     private StringService stringService;
     @Autowired
-    private CategoryImageRepo categoryImageRepo;
+    private CategoryStyleRepo categoryStyleRepo;
 
     @Value("${upload.categoryImagePath}")
     private String uploadPath;
@@ -43,8 +43,8 @@ public class CategoryService {
      * Метод сохраняет новую запись категории.
      * @param categoryName
      */
-    public void createCategory(String categoryName, String categoryDesc, MultipartFile file) throws IOException {
-        Category category = new Category(categoryName, categoryDesc);
+    public void createCategory(String categoryName, MultipartFile file) throws IOException {
+        Category category = new Category(categoryName);
 
         String filename = stringService.replaceChar(file.getOriginalFilename(), " ", "_");
         File uploadDir = new File(uploadPath);
@@ -56,13 +56,39 @@ public class CategoryService {
         String resultFilename = uuidFile + "." + filename;
 
             File output = new File(uploadPath +  "/" + resultFilename);
-            ImageIO.write(imageService.resizeImage(file.getBytes(), 200, 300), "png", output);
+            ImageIO.write(imageService.resizeImage(file.getBytes(), 300, 400), "png", output);
 
         category.setFileName(resultFilename);
         categoryRepo.save(category);
     }
 
-    public Iterable<CategoryImage>getCategoryImages(long categoryId) {
-        return categoryImageRepo.findByCategoryId(categoryId);
+    /**
+     * Метод сохраняет новую запись стиля категории.
+     * @param styleName
+     * @param styleDesc
+     * @param categoryId
+     * @param file
+     */
+    public void createCategoryStyle(String styleName, String styleDesc, Long categoryId, MultipartFile file) throws IOException {
+        CategoryStyle categoryStyle = new CategoryStyle(styleName, styleDesc, categoryId);
+
+        String filename = stringService.replaceChar(file.getOriginalFilename(), " ", "_");
+        File uploadDir = new File(uploadPath);
+
+        if (!uploadDir.exists()) {
+            uploadDir.mkdir();
+        }
+        String uuidFile = UUID.randomUUID().toString();
+        String resultFilename = uuidFile + "." + filename;
+
+            File output = new File(uploadPath +  "/" + resultFilename);
+            ImageIO.write(imageService.resizeImage(file.getBytes(), 300, 400), "png", output);
+
+        categoryStyle.setStyleImage(resultFilename);
+        categoryStyleRepo.save(categoryStyle);
+    }
+
+    public Iterable<CategoryStyle>getCategoryStyles(long categoryId) {
+        return categoryStyleRepo.findByCategoryId(categoryId);
     }
 }

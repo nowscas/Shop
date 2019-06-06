@@ -23,10 +23,7 @@
                     <div class="card-header">
                         ${category.categoryName}
                     </div>
-                    <a href="/categoryPage/${category.id}"><img src="/img/${card.cardImagePath}" class="card-img-top"></a>
-                    <div class="m-2">
-                        ${category.categoryDesc}
-                    </div>
+                    <a href="/categoryPage/${category.id}"><img src="/catImg/${category.fileName}" class="card-img-top"></a>
                 </div>
             </#list>
          </div>
