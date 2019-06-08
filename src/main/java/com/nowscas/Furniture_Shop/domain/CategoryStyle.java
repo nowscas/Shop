@@ -9,17 +9,25 @@ public class CategoryStyle {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @JoinTable(name = "category", joinColumns = @JoinColumn(name = "id"))
-    private Long categoryId;
-
     private String styleImage;
     private String styleName;
     private String styleDesc;
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name="category_id", referencedColumnName = "id")
+    private Category category;
 
-    public CategoryStyle(String styleName, String styleDesc, Long categoryId) {
+    public CategoryStyle(String styleName, String styleDesc, Category category) {
         this.styleName = styleName;
         this.styleDesc = styleDesc;
-        this.categoryId = categoryId;
+        this.category = category;
+    }
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
     }
 
     public CategoryStyle() {
@@ -33,12 +41,12 @@ public class CategoryStyle {
         this.styleImage = styleImage;
     }
 
-    public Long getCategoryId() {
-        return categoryId;
+    public Long getId() {
+        return id;
     }
 
-    public void setCategoryId(Long categoryId) {
-        this.categoryId = categoryId;
+    public void setId(Long categoryId) {
+        this.id = categoryId;
     }
 
     public String getStyleName() {

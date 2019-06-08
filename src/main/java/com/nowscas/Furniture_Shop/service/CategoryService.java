@@ -70,7 +70,8 @@ public class CategoryService {
      * @param file
      */
     public void createCategoryStyle(String styleName, String styleDesc, Long categoryId, MultipartFile file) throws IOException {
-        CategoryStyle categoryStyle = new CategoryStyle(styleName, styleDesc, categoryId);
+        Category category = categoryRepo.findById(categoryId).get();
+        CategoryStyle categoryStyle = new CategoryStyle(styleName, styleDesc, category);
 
         String filename = stringService.replaceChar(file.getOriginalFilename(), " ", "_");
         File uploadDir = new File(uploadPath);

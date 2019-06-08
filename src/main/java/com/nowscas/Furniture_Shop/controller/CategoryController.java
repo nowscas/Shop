@@ -92,6 +92,6 @@ public class CategoryController {
         } else {
             categoryService.createCategoryStyle(categoryStyleName, categoryStyleDesc, categoryId, file);
         }
-        return "redirect:/categoryPage" + categoryId;
+        return "redirect:/categoryPage/" + categoryId;
     }
 }
