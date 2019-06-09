@@ -11,14 +11,12 @@ public class CategoryStyle {
 
     private String styleImage;
     private String styleName;
-    private String styleDesc;
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name="category_id", referencedColumnName = "id")
     private Category category;
 
-    public CategoryStyle(String styleName, String styleDesc, Category category) {
+    public CategoryStyle(String styleName, Category category) {
         this.styleName = styleName;
-        this.styleDesc = styleDesc;
         this.category = category;
     }
 
@@ -57,11 +55,4 @@ public class CategoryStyle {
         this.styleName = styleName;
     }
 
-    public String getStyleDesc() {
-        return styleDesc;
-    }
-
-    public void setStyleDesc(String styleDesc) {
-        this.styleDesc = styleDesc;
-    }
 }

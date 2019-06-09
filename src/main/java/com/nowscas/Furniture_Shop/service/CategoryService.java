@@ -65,13 +65,12 @@ public class CategoryService {
     /**
      * Метод сохраняет новую запись стиля категории.
      * @param styleName
-     * @param styleDesc
      * @param categoryId
      * @param file
      */
-    public void createCategoryStyle(String styleName, String styleDesc, Long categoryId, MultipartFile file) throws IOException {
+    public void createCategoryStyle(String styleName, Long categoryId, MultipartFile file) throws IOException {
         Category category = categoryRepo.findById(categoryId).get();
-        CategoryStyle categoryStyle = new CategoryStyle(styleName, styleDesc, category);
+        CategoryStyle categoryStyle = new CategoryStyle(styleName, category);
 
         String filename = stringService.replaceChar(file.getOriginalFilename(), " ", "_");
         File uploadDir = new File(uploadPath);

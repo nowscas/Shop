@@ -2,12 +2,14 @@
 <#include "parts/security.ftl">
 
 <@c.page>
+
+    <link rel="stylesheet" href="/static/categoryPageStyle.css">
+
     <#if isAdmin>
         <div>
             Добавить стиль
             <form action="/addCategoryStyle" method="post" enctype="multipart/form-data">
                 <input type="text" name="categoryStyleName" placeholder="Введите название" />
-                <input type="text" name="categoryStyleDesc" placeholder="Введите описание" />
                 <input type="hidden" name="categoryId" value="${categoryId}" />
                 <input type="file" name="file">
                 <input type="hidden" name="_csrf" value="${_csrf.token}" />
@@ -16,9 +18,17 @@
         </div>
     </#if>
 
-    <#list styles as style>
-    <div>
-        <img src="/catImg/${style.styleImage}">
+    <div class = "container">
+        <div class = "card-deck assortCategories">
+            <#list styles as style>
+                <div class="card my-3">
+                    <div class="card-header">
+                        ${style.styleName}
+                    </div>
+                    <img src="/catImg/${style.styleImage}" class="card-img-top">
+                </div>
+            </#list>
+        </div>
     </div>
-    </#list>
+
 </@c.page>
