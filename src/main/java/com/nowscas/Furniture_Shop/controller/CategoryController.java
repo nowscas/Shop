@@ -74,7 +74,6 @@ public class CategoryController {
     /**
      * Метот дает команду на сохранение стиля категории в БД и возвращает страницу стилей категории.
      * @param categoryStyleName
-     * @param categoryStyleDesc
      * @param categoryId
      * @param file
      * @return
