@@ -86,7 +86,7 @@ public class CategoryController {
             Map<String, Object> model) throws IOException {
         if (file.isEmpty() || file.getSize() < 0 || !Objects.requireNonNull(file.getContentType()).contains("image")) {
             model.put("message", "Выбран не подходящий файл!");
-            return "redirect:/categoryPage" + categoryId;
+            return "redirect:/categoryPage/" + categoryId;
         } else {
             categoryService.createCategoryStyle(categoryStyleName, categoryId, file);
         }

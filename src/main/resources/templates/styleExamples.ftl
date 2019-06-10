@@ -2,11 +2,12 @@
 <#include "parts/security.ftl">
 
 <@c.page>
+<div style="text-align: center; font-size: 200%">${message?ifExists}</div>
 
     <#if isAdmin>
         <div>
             Добавить пример
-            <form action="/" method="post" enctype="multipart/form-data">
+            <form action="/addExample" method="post" enctype="multipart/form-data">
                 <input type="text" name="exampleDesc" placeholder="Введите описание" />
                 <input type="hidden" name="styleId" value="${styleId}" />
                 <input type="file" name="file">
@@ -15,5 +16,10 @@
             </form>
         </div>
     </#if>
+
+    <#list examples as example>
+        <div>${example.exampleDesc}</div>
+        <img src="/catExamples/${example.exampleImage}" class="card-img-top">
+    </#list>
 
 </@c.page>

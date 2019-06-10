@@ -29,7 +29,9 @@ public class CategoryService {
     private CategoryStyleRepo categoryStyleRepo;
 
     @Value("${upload.categoryImagePath}")
-    private String uploadPath;
+    private String uploadCatPath;
+    @Value("${upload.categoryStylePath}")
+    private String uploadStylePath;
 
     /**
      * Метод вовращает все категории.
@@ -47,7 +49,7 @@ public class CategoryService {
         Category category = new Category(categoryName);
 
         String filename = stringService.replaceChar(file.getOriginalFilename(), " ", "_");
-        File uploadDir = new File(uploadPath);
+        File uploadDir = new File(uploadCatPath);
 
         if (!uploadDir.exists()) {
             uploadDir.mkdir();
@@ -55,7 +57,7 @@ public class CategoryService {
         String uuidFile = UUID.randomUUID().toString();
         String resultFilename = uuidFile + "." + filename;
 
-            File output = new File(uploadPath +  "/" + resultFilename);
+            File output = new File(uploadCatPath +  "/" + resultFilename);
             ImageIO.write(imageService.resizeImage(file.getBytes(), 300, 400), "png", output);
 
         category.setFileName(resultFilename);
@@ -73,7 +75,7 @@ public class CategoryService {
         CategoryStyle categoryStyle = new CategoryStyle(styleName, category);
 
         String filename = stringService.replaceChar(file.getOriginalFilename(), " ", "_");
-        File uploadDir = new File(uploadPath);
+        File uploadDir = new File(uploadStylePath);
 
         if (!uploadDir.exists()) {
             uploadDir.mkdir();
@@ -81,7 +83,7 @@ public class CategoryService {
         String uuidFile = UUID.randomUUID().toString();
         String resultFilename = uuidFile + "." + filename;
 
-            File output = new File(uploadPath +  "/" + resultFilename);
+            File output = new File(uploadStylePath +  "/" + resultFilename);
             ImageIO.write(imageService.resizeImage(file.getBytes(), 300, 400), "png", output);
 
         categoryStyle.setStyleImage(resultFilename);

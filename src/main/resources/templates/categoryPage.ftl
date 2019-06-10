@@ -2,6 +2,7 @@
 <#include "parts/security.ftl">
 
 <@c.page>
+<div style="text-align: center; font-size: 200%">${message?ifExists}</div>
 
     <link rel="stylesheet" href="/static/categoryPageStyle.css">
 
@@ -25,7 +26,7 @@
                     <div class="card-header">
                         ${style.styleName}
                     </div>
-                    <a href="/styleExample/${style.id}"><img src="/catImg/${style.styleImage}" class="card-img-top"></a>
+                    <a href="/styleExample/${style.id}"><img src="/catStyle/${style.styleImage}" class="card-img-top"></a>
                 </div>
             </#list>
         </div>

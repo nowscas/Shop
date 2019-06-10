@@ -16,7 +16,8 @@ public class StyleExample {
     @JoinColumn(name="category_style_id", referencedColumnName = "id")
     private CategoryStyle categoryStyle;
 
-    public StyleExample(CategoryStyle categoryStyle) {
+    public StyleExample(String exampleDesc, CategoryStyle categoryStyle) {
+        this.exampleDesc = exampleDesc;
         this.categoryStyle = categoryStyle;
     }
 
@@ -25,6 +26,14 @@ public class StyleExample {
 
     public Long getId() {
         return id;
+    }
+
+    public String getExampleDesc() {
+        return exampleDesc;
+    }
+
+    public void setExampleDesc(String exampleDesc) {
+        this.exampleDesc = exampleDesc;
     }
 
     public void setId(Long id) {
