@@ -2,6 +2,8 @@
 <#include "parts/security.ftl">
 
 <@c.page>
+<link rel="stylesheet" href="/static/exampleStyle.css">
+
 <div style="text-align: center; font-size: 300%">${styleName?ifExists}</div>
 <div style="text-align: center; font-size: 200%; margin-top: 5%;">${styleDesc?ifExists}</div>
 <div style="text-align: center; font-size: 200%">${message?ifExists}</div>
@@ -18,13 +20,13 @@
         </div>
     </#if>
 
-    <#list examples as example>
-        <div class = "row" style = "margin: 3% 10% 0 10%;">
-            <div class = "col-5">
-                <img src="/catExamples/${example.exampleImage}">
-            </div>
-
-        </div>
-    </#list>
-
+    <div class = "container">
+         <div class = "card-deck">
+            <#list examples as example>
+                <div class="card my-3">
+                    <img src="/catExamples/${example.exampleImage}">
+                </div>
+            </#list>
+         </div>
+    </div>
 </@c.page>
