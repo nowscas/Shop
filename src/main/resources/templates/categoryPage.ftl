@@ -11,6 +11,7 @@
             Добавить стиль
             <form action="/addCategoryStyle" method="post" enctype="multipart/form-data">
                 <input type="text" name="categoryStyleName" placeholder="Введите название" />
+                <input type="text" name="categoryStyleDescription" placeholder="Введите описание" />
                 <input type="hidden" name="categoryId" value="${categoryId}" />
                 <input type="file" name="file">
                 <input type="hidden" name="_csrf" value="${_csrf.token}" />

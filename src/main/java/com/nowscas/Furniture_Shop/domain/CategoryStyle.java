@@ -11,17 +11,27 @@ public class CategoryStyle {
 
     private String styleImage;
     private String styleName;
+    private String styleDescription;
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name="category_id", referencedColumnName = "id")
     private Category category;
 
-    public CategoryStyle(String styleName, Category category) {
+    public CategoryStyle(String styleName, String styleDescription, Category category) {
         this.styleName = styleName;
+        this.styleDescription = styleDescription;
         this.category = category;
     }
 
     public CategoryStyle() {
+    }
+
+    public String getStyleDescription() {
+        return styleDescription;
+    }
+
+    public void setStyleDescription(String styleDescription) {
+        this.styleDescription = styleDescription;
     }
 
     public Category getCategory() {

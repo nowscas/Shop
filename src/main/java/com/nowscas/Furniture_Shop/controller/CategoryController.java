@@ -81,6 +81,7 @@ public class CategoryController {
     @PostMapping("/addCategoryStyle")
     public String addCategoryStyle(
             @RequestParam String categoryStyleName,
+            @RequestParam String categoryStyleDescription,
             @RequestParam Long categoryId,
             @RequestParam("file") MultipartFile file,
             Map<String, Object> model) throws IOException {
@@ -88,7 +89,7 @@ public class CategoryController {
             model.put("message", "Выбран не подходящий файл!");
             return "redirect:/categoryPage/" + categoryId;
         } else {
-            categoryService.createCategoryStyle(categoryStyleName, categoryId, file);
+            categoryService.createCategoryStyle(categoryStyleName, categoryStyleDescription, categoryId, file);
         }
         return "redirect:/categoryPage/" + categoryId;
     }

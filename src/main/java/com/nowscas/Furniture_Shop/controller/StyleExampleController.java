@@ -28,9 +28,11 @@ public class StyleExampleController {
      */
     @GetMapping("/styleExample/{categoryStyle}")
     public String getExamplePage(@PathVariable CategoryStyle categoryStyle, Model model) {
+        model.addAttribute("styleDesc", categoryStyle.getStyleDescription());
+        model.addAttribute("styleName", categoryStyle.getStyleName());
         model.addAttribute("examples", exampleService.getStyleExamples(categoryStyle.getId()));
         model.addAttribute("styleId", categoryStyle.getId());
-            return "styleExamples";
+        return "styleExamples";
     }
 
     /**
@@ -38,7 +40,6 @@ public class StyleExampleController {
      */
     @PostMapping("/addExample")
     public String addExample(
-            @RequestParam String exampleDesc,
             @RequestParam Long styleId,
             @RequestParam("file") MultipartFile file,
             Map<String, Object> model) throws IOException {
@@ -46,7 +47,7 @@ public class StyleExampleController {
             model.put("message", "Выбран не подходящий файл!");
             return "redirect:/categoryPage/" + styleId;
         } else {
-            exampleService.addExample(exampleDesc, styleId, file);
+            exampleService.addExample(styleId, file);
         }
         return "redirect:/styleExample/" + styleId;
     }

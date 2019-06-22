@@ -17,9 +17,9 @@ import java.util.UUID;
 @Service
 public class ExampleService {
     @Autowired
-    StyleExampleRepo styleExampleRepo;
+    private StyleExampleRepo styleExampleRepo;
     @Autowired
-    CategoryStyleRepo categoryStyleRepo;
+    private CategoryStyleRepo categoryStyleRepo;
     @Autowired
     private ImageService imageService;
     @Autowired
@@ -37,13 +37,10 @@ public class ExampleService {
 
     /**
      * Метод сохраняет пример стиля в бд.
-     * @param exampleDesc
-     * @param styleId
-     * @param file
      */
-    public void addExample(String exampleDesc, Long styleId, MultipartFile file) throws IOException {
+    public void addExample(Long styleId, MultipartFile file) throws IOException {
         CategoryStyle categoryStyle = categoryStyleRepo.findById(styleId).get();
-        StyleExample styleExample = new StyleExample(exampleDesc, categoryStyle);
+        StyleExample styleExample = new StyleExample(categoryStyle);
 
         String filename = stringService.replaceChar(file.getOriginalFilename(), " ", "_");
         File uploadDir = new File(uploadPath);

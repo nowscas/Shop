@@ -10,14 +10,12 @@ public class StyleExample {
     private Long id;
 
     private String exampleImage;
-    private String exampleDesc;
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name="category_style_id", referencedColumnName = "id")
     private CategoryStyle categoryStyle;
 
-    public StyleExample(String exampleDesc, CategoryStyle categoryStyle) {
-        this.exampleDesc = exampleDesc;
+    public StyleExample(CategoryStyle categoryStyle) {
         this.categoryStyle = categoryStyle;
     }
 
@@ -26,14 +24,6 @@ public class StyleExample {
 
     public Long getId() {
         return id;
-    }
-
-    public String getExampleDesc() {
-        return exampleDesc;
-    }
-
-    public void setExampleDesc(String exampleDesc) {
-        this.exampleDesc = exampleDesc;
     }
 
     public void setId(Long id) {
