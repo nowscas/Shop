@@ -1,6 +1,7 @@
 package com.nowscas.Furniture_Shop.domain;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 public class StyleExample {
@@ -14,6 +15,9 @@ public class StyleExample {
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name="category_style_id", referencedColumnName = "id")
     private CategoryStyle categoryStyle;
+
+    @OneToMany(mappedBy = "styleExample", cascade = CascadeType.ALL)
+    private Set<StyleExampleImage> exampleImages;
 
     public StyleExample(CategoryStyle categoryStyle) {
         this.categoryStyle = categoryStyle;
@@ -44,5 +48,13 @@ public class StyleExample {
 
     public void setCategoryStyle(CategoryStyle categoryStyle) {
         this.categoryStyle = categoryStyle;
+    }
+
+    public Set<StyleExampleImage> getExampleImages() {
+        return exampleImages;
+    }
+
+    public void setExampleImages(Set<StyleExampleImage> exampleImages) {
+        this.exampleImages = exampleImages;
     }
 }

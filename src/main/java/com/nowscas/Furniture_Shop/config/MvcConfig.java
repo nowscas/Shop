@@ -19,6 +19,8 @@ public class MvcConfig implements WebMvcConfigurer {
     private String categoryStylePath;
     @Value("${upload.categoryExamplePath}")
     private String categoryExamplePath;
+    @Value("${upload.categoryExampleImagePath}")
+    private String categoryExampleImagePath;
 
     /**
      * На данный момент в методе используется только встроенная в Spring система авторизации,
@@ -43,6 +45,8 @@ public class MvcConfig implements WebMvcConfigurer {
                 .addResourceLocations("file://" + categoryStylePath + "/");
         registry.addResourceHandler("/catExamples/***")
                 .addResourceLocations("file://" + categoryExamplePath + "/");
+        registry.addResourceHandler("/catExamplesImages/***")
+                .addResourceLocations("file://" + categoryExampleImagePath + "/");
         registry.addResourceHandler("/static/***")
                 .addResourceLocations("classpath:/static/");
     }

@@ -40,6 +40,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                             "/catImg/***",
                             "/catStyle/***",
                             "/catExamples/***",
+                            "/catExamplesImages/***",
                             "/catImg/***").permitAll()
                     .anyRequest().authenticated()
                 .and()
