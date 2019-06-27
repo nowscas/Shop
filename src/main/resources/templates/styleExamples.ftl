@@ -23,6 +23,14 @@
     <div class = "container">
          <div class = "card-deck">
              <#list examples as example>
+                 <#if isAdmin>
+                     <form action="/addExampleImage" method="post" enctype="multipart/form-data">
+                         <input name="file" type="file" onchange="this.form.submit();">
+                         <input type="hidden" name="exampleId" value="${example.id}">
+                         <input type="hidden" name="styleId" value="${styleId}"">
+                         <input type="hidden" name="_csrf" value="${_csrf.token}" />
+                     </form>
+                 </#if>
                  <div class="card my-3" data-toggle="modal" data-target="#exampleModalCenter">
                      <img src="/catExamples/${example.exampleImage}">
                  </div>

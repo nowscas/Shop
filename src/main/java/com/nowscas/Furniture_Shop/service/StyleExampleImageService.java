@@ -1,5 +1,6 @@
 package com.nowscas.Furniture_Shop.service;
 
+import com.nowscas.Furniture_Shop.domain.StyleExample;
 import com.nowscas.Furniture_Shop.domain.StyleExampleImage;
 import com.nowscas.Furniture_Shop.repos.StyleExampleImageRepo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,9 +26,8 @@ public class StyleExampleImageService {
     @Value("${upload.categoryExampleImagePath}")
     private String uploadPath;
 
-    public StyleExampleImage addImageToGallery(MultipartFile file) throws IOException {
-        StyleExampleImage styleExampleImage = new StyleExampleImage();
-
+    public StyleExampleImage addImageToGallery(MultipartFile file, StyleExample styleExample) throws IOException {
+        StyleExampleImage styleExampleImage = new StyleExampleImage(styleExample);
         String filename = stringService.replaceChar(file.getOriginalFilename(), " ", "_");
         File uploadDir = new File(uploadPath);
 
@@ -38,7 +38,7 @@ public class StyleExampleImageService {
         String resultFilename = uuidFile + "." + filename;
 
         File output = new File(uploadPath +  "/" + resultFilename);
-        ImageIO.write(imageService.resizeImage(file.getBytes(), 600, 800), "png", output);
+        ImageIO.write(imageService.resizeImage(file.getBytes(), 800, 1000), "png", output);
 
         styleExampleImage.setImagePath(resultFilename);
         styleExampleImageRepo.save(styleExampleImage);

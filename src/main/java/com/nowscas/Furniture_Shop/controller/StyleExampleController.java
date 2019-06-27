@@ -1,7 +1,9 @@
 package com.nowscas.Furniture_Shop.controller;
 
 import com.nowscas.Furniture_Shop.domain.CategoryStyle;
+import com.nowscas.Furniture_Shop.domain.StyleExample;
 import com.nowscas.Furniture_Shop.service.ExampleService;
+import com.nowscas.Furniture_Shop.service.StyleExampleImageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,6 +21,8 @@ import java.util.Objects;
 public class StyleExampleController {
     @Autowired
     ExampleService exampleService;
+    @Autowired
+    StyleExampleImageService styleExampleImageService;
 
     /**
      * Метод возвращает страницу с конкретным стилем.
@@ -50,5 +54,24 @@ public class StyleExampleController {
             exampleService.addExample(styleId, file);
         }
         return "redirect:/styleExample/" + styleId;
+    }
+
+    /**
+     * Метод дает команду на сохранение картинки примера.
+     */
+    @PostMapping("/addExampleImage")
+    public String editExample(
+            @RequestParam MultipartFile file,
+            @RequestParam("exampleId") StyleExample styleExample,
+            @RequestParam("styleId") CategoryStyle categoryStyle,
+            Map<String, Object> model
+    ) throws IOException {
+        if (file.isEmpty() || file.getSize() < 0 || !Objects.requireNonNull(file.getContentType()).contains("image")) {
+            model.put("message", "Выбран не подходящий файл!");
+            return "redirect:/categoryPage/" + categoryStyle.getId();
+        } else {
+            styleExampleImageService.addImageToGallery(file, styleExample);
+        }
+        return "redirect:/styleExample/" + categoryStyle.getId();
     }
 }
