@@ -31,12 +31,14 @@
                          <input type="hidden" name="_csrf" value="${_csrf.token}" />
                      </form>
                  </#if>
-                 <div class="card my-3" data-toggle="modal" data-target="#exampleModalCenter">
+                 <div class="card my-3" data-toggle="modal" data-target="#${example.id}exampleModalCenter">
                      <img src="/catExamples/${example.exampleImage}">
                  </div>
 
-                 <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                     <div class="modal-dialog modal-dialog-centered" role="document">
+
+
+                 <div class="modal fade" id="${example.id}exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                     <div class="modal-dialog modal-dialog-centered">
                          <div class="modal-content">
                              <div class="modal-header">
                                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -44,13 +46,34 @@
                                  </button>
                              </div>
                              <div class="modal-body">
-                                 <img src="/catExamples/${example.exampleImage}">
+                                 <div id="${example.id}carouselExampleControls" class="carousel slide" data-ride="carousel">
+                                     <div class="carousel-inner">
+                                         <#list example.exampleImages as image>
+                                             <#if image_has_next>
+                                                 <div class="carousel-item">
+                                                     <img class="d-block w-100" src="/catExamplesImages/${image.imagePath}">
+                                                 </div>
+                                             <#else>
+                                                 <div class="carousel-item active">
+                                                     <img class="d-block w-100" src="/catExamplesImages/${image.imagePath}">
+                                                 </div>
+                                             </#if>
+                                         </#list>
+                                     </div>
+                                     <a class="carousel-control-prev" href="#${example.id}carouselExampleControls" role="button" data-slide="prev">
+                                     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                     <span class="sr-only">Previous</span>
+                                     </a>
+                                     <a class="carousel-control-next" href="#${example.id}carouselExampleControls" role="button" data-slide="next">
+                                     <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                     <span class="sr-only">Next</span>
+                                     </a>
+                                 </div>
                              </div>
                          </div>
                      </div>
                  </div>
-
-            </#list>
+              </#list>
          </div>
     </div>
 </@c.page>
