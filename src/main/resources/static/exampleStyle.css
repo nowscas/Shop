@@ -3,15 +3,37 @@
 }
 
 .card-deck {
-    width: 80%;
-    margin-left: 10%;
+    width: 90%;
+    margin-left: 5%;
     margin-top: 100px;
     text-align: center;
 }
 
+.card-img-top {
+    border: 6px solid black;
+    height: 100%
+}
+
 .card {
-    min-width: 21%;
-    max-width: 21%;
-    margin-left: 6% !important;
-    margin-right: 6% !important;
+    min-width: 24%;
+    max-width: 24%;
+    margin-left: 7% !important;
+    margin-right: 0 !important;
+}
+
+.carousel-control-prev-icon, .carousel-control-next-icon {
+    height: 100px;
+    width: 100px;
+    background-color: black;
+    background-size: 100%, 100%;
+}
+
+@media (min-width: 576px) {
+  .modal-dialog { max-width: none; }
+}
+
+.modal-dialog {
+  width: 50%;
+  padding: 0;
+  margin-left: 25%;
 }

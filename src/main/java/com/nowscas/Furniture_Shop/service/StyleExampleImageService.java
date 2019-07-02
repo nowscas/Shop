@@ -38,7 +38,7 @@ public class StyleExampleImageService {
         String resultFilename = uuidFile + "." + filename;
 
         File output = new File(uploadPath +  "/" + resultFilename);
-        ImageIO.write(imageService.resizeImage(file.getBytes(), 800, 1000), "png", output);
+        ImageIO.write(imageService.resizeImage(file.getBytes(), 650, 850), "png", output);
 
         styleExampleImage.setImagePath(resultFilename);
         styleExampleImageRepo.save(styleExampleImage);
