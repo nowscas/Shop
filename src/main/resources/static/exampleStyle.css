@@ -37,3 +37,8 @@
   padding: 0;
   margin-left: 25%;
 }
+
+.formLabel {
+    text-align: center;
+    font-size: 150%;
+}

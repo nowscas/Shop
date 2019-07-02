@@ -5,17 +5,19 @@
 <link rel="stylesheet" href="/static/exampleStyle.css">
 
 <div style="text-align: center; font-size: 300%">${styleName?ifExists}</div>
-<div style="text-align: center; font-size: 200%; margin-top: 5%;">${styleDesc?ifExists}</div>
+<div style="text-align: center; font-size: 200%; margin-top: 2%;">${styleDesc?ifExists}</div>
 <div style="text-align: center; font-size: 200%">${message?ifExists}</div>
 
     <#if isAdmin>
-        <div>
-            Добавить пример
+        <div style="margin:3% 25% 0 25%; width: 50%;">
+            <div class = "formLabel">Добавить пример</div>
             <form action="/addExample" method="post" enctype="multipart/form-data">
+                <input type="hidden" name="_csrf" value="${_csrf.token}"/>
                 <input type="hidden" name="styleId" value="${styleId}" />
-                <input type="file" name="file">
-                <input type="hidden" name="_csrf" value="${_csrf.token}" />
-                <button type="submit">Добавить</button>
+                <div style = "text-align: center;">
+                    <input type="file" name="file">
+                    <input type="submit" value="Добавить пример"/>
+                </div>
             </form>
         </div>
     </#if>
