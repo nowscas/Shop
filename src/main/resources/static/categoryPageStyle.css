@@ -20,3 +20,8 @@
 .card-header {
     background-color: white;
 }
+
+.formLabel {
+    text-align: center;
+    font-size: 150%;
+}

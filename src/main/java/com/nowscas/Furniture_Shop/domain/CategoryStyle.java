@@ -11,6 +11,8 @@ public class CategoryStyle {
 
     private String styleImage;
     private String styleName;
+
+    @Column(length = 2048)
     private String styleDescription;
 
     @ManyToOne(cascade = CascadeType.ALL)

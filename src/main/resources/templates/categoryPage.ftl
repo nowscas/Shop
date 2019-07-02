@@ -7,15 +7,25 @@
     <link rel="stylesheet" href="/static/categoryPageStyle.css">
 
     <#if isAdmin>
-        <div>
-            Добавить стиль
+        <div style="margin:5% 10% 0 10%">
+            <div class = "formLabel">Добавить стиль</div>
             <form action="/addCategoryStyle" method="post" enctype="multipart/form-data">
-                <input type="text" name="categoryStyleName" placeholder="Введите название" />
-                <input type="text" name="categoryStyleDescription" placeholder="Введите описание" />
+                <div class="form-group">
+                    <label for="formGroupStyleName">Название</label>
+                    <input type="text" class="form-control" name="categoryStyleName" placeholder="Введите название">
+                </div>
+                <div class="form-group">
+                    <label for="formGroupStyleDescription">Описание стиля</label>
+                    <textarea class="form-control" name="categoryStyleDescription" placeholder="Введите описание" rows="5"></textarea>
+                </div>
+                <div>
+                    <input type="file" name="file">
+                </div>
+                <input type="hidden" name="_csrf" value="${_csrf.token}"/>
                 <input type="hidden" name="categoryId" value="${categoryId}" />
-                <input type="file" name="file">
-                <input type="hidden" name="_csrf" value="${_csrf.token}" />
-                <button type="submit">Добавить</button>
+                <div style="text-align: right">
+                    <input type="submit" value="Добавить стиль"/>
+                </div>
             </form>
         </div>
     </#if>
