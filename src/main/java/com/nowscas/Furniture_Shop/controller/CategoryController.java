@@ -31,15 +31,6 @@ public class CategoryController {
     }
 
     /**
-     * Метод возвращает страницу создания новой категории.
-     * @return
-     */
-    @GetMapping("/addCategory")
-    public String getAddPage() {
-        return "addCategory";
-    }
-
-    /**
      * Метод возвращает страницу с конкретной категорией.
      * @param category
      * @param model

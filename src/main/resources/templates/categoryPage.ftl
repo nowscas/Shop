@@ -20,12 +20,10 @@
                 </div>
                 <div>
                     <input type="file" name="file">
+                    <input type="submit" value="Добавить стиль"/>
                 </div>
                 <input type="hidden" name="_csrf" value="${_csrf.token}"/>
                 <input type="hidden" name="categoryId" value="${categoryId}" />
-                <div style="text-align: right">
-                    <input type="submit" value="Добавить стиль"/>
-                </div>
             </form>
         </div>
     </#if>
