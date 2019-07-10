@@ -48,3 +48,11 @@
 .card-header {
     background-color: #202120;
 }
+.addForm {
+    margin: 1% 10% 5% 10%;
+}
+.formLabel {
+    text-align: center;
+    color: white;
+    font-size: 150%;
+}

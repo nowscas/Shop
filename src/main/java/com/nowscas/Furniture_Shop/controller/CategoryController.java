@@ -59,7 +59,7 @@ public class CategoryController {
         } else {
             categoryService.createCategory(categoryName, file);
         }
-        return "redirect:/categories";
+        return "redirect:/";
     }
 
     /**

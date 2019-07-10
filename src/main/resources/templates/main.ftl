@@ -1,4 +1,5 @@
 <#import "parts/common.ftl" as c>
+<#include "parts/security.ftl">
 
 <@c.page>
 
@@ -16,6 +17,23 @@
 
     <div class = "container secondLayer">
          <div class = "assortLabel"><h3>Ассортимент</h3></div>
+
+         <#if isAdmin>
+             <div class = "addForm">
+                 <div class = "formLabel">Добавить категорию</div>
+                 <form action="/addCategory" method="post" enctype="multipart/form-data">
+                     <div class="form-group">
+                         <label for="formGroupCategoryName">Название</label>
+                         <input type="text" class="form-control" name="categoryName" placeholder="Введите название">
+                     </div>
+                     <input type="hidden" name="_csrf" value="${_csrf.token}"/>
+                     <div>
+                         <input type="file" name="file">
+                         <input type="submit" value="Добавить стиль"/>
+                     </div>
+                 </form>
+                 </div>
+         </#if>
 
          <div class = "card-deck assortCategories">
             <#list categories as category>
