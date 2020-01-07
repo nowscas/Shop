@@ -29,7 +29,7 @@
                      <input type="hidden" name="_csrf" value="${_csrf.token}"/>
                      <div>
                          <input type="file" name="file">
-                         <input type="submit" value="Добавить стиль"/>
+                         <input type="submit" value="Добавить категорию"/>
                      </div>
                  </form>
                  </div>
@@ -42,6 +42,9 @@
                         ${category.categoryName}
                     </div>
                     <a href="/categoryPage/${category.id}"><img src="/catImg/${category.fileName}" class="card-img-top"></a>
+                    <#if isAdmin>
+
+                    </#if>
                 </div>
             </#list>
          </div>
