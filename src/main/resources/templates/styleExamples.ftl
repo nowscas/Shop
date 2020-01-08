@@ -11,6 +11,9 @@
     <#if isAdmin>
         <div style="margin:3% 25% 0 25%; width: 50%;">
             <div class = "formLabel">Добавить пример</div>
+
+            <div style="text-align: center; font-size: 200%; color: red">${message?ifExists}</div>
+
             <form action="/addExample" method="post" enctype="multipart/form-data">
                 <input type="hidden" name="_csrf" value="${_csrf.token}"/>
                 <input type="hidden" name="styleId" value="${styleId}" />
