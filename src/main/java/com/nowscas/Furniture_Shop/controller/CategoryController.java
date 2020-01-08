@@ -13,7 +13,8 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.util.Map;
-import java.util.Objects;
+
+import static java.util.Objects.requireNonNull;
 
 @Controller
 public class CategoryController {
@@ -53,7 +54,7 @@ public class CategoryController {
             @RequestParam String categoryName,
             @RequestParam("file") MultipartFile file,
             Map<String, Object> model) throws IOException {
-        if (file.isEmpty() || file.getSize() < 0 || !Objects.requireNonNull(file.getContentType()).contains("image")) {
+        if (file.isEmpty() || file.getSize() < 0 || !requireNonNull(file.getContentType()).contains("image")) {
             model.put("message", "Выбран не подходящий файл!");
             return "addCategory";
         } else {
@@ -76,12 +77,23 @@ public class CategoryController {
             @RequestParam Long categoryId,
             @RequestParam("file") MultipartFile file,
             Map<String, Object> model) throws IOException {
-        if (file.isEmpty() || file.getSize() < 0 || !Objects.requireNonNull(file.getContentType()).contains("image")) {
+        if (file.isEmpty() || file.getSize() < 0 || !requireNonNull(file.getContentType()).contains("image")) {
             model.put("message", "Выбран не подходящий файл!");
             return "redirect:/categoryPage/" + categoryId;
         } else {
             categoryService.createCategoryStyle(categoryStyleName, categoryStyleDescription, categoryId, file);
         }
         return "redirect:/categoryPage/" + categoryId;
+    }
+
+    /**
+     * Метод дает команду на удаление категории со всеми вложенными объектами.
+     * @param category
+     * @return
+     */
+    @GetMapping("/deleteCategory/{category}")
+    public String deleteCategory(@PathVariable Category category) {
+        categoryService.deleteCategory(category);
+        return "redirect:/";
     }
 }

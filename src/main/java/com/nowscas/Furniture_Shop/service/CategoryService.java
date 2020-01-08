@@ -2,8 +2,11 @@ package com.nowscas.Furniture_Shop.service;
 
 import com.nowscas.Furniture_Shop.domain.Category;
 import com.nowscas.Furniture_Shop.domain.CategoryStyle;
+import com.nowscas.Furniture_Shop.domain.StyleExample;
 import com.nowscas.Furniture_Shop.repos.CategoryRepo;
 import com.nowscas.Furniture_Shop.repos.CategoryStyleRepo;
+import com.nowscas.Furniture_Shop.repos.StyleExampleImageRepo;
+import com.nowscas.Furniture_Shop.repos.StyleExampleRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -22,16 +25,19 @@ public class CategoryService {
     @Autowired
     private CategoryRepo categoryRepo;
     @Autowired
+    private CategoryStyleRepo categoryStyleRepo;
+
+    @Autowired
     private ImageService imageService;
     @Autowired
     private StringService stringService;
     @Autowired
-    private CategoryStyleRepo categoryStyleRepo;
+    private ExampleService exampleService;
 
     @Value("${upload.categoryImagePath}")
-    private String uploadCatPath;
+    private String categoryPath;
     @Value("${upload.categoryStylePath}")
-    private String uploadStylePath;
+    private String stylePath;
 
     /**
      * Метод вовращает все категории.
@@ -49,7 +55,7 @@ public class CategoryService {
         Category category = new Category(categoryName);
 
         String filename = stringService.replaceChar(file.getOriginalFilename(), " ", "_");
-        File uploadDir = new File(uploadCatPath);
+        File uploadDir = new File(categoryPath);
 
         if (!uploadDir.exists()) {
             uploadDir.mkdir();
@@ -57,7 +63,7 @@ public class CategoryService {
         String uuidFile = UUID.randomUUID().toString();
         String resultFilename = uuidFile + "." + filename;
 
-            File output = new File(uploadCatPath +  "/" + resultFilename);
+            File output = new File(categoryPath +  "/" + resultFilename);
             ImageIO.write(imageService.resizeImage(file.getBytes(), 300, 400), "png", output);
 
         category.setFileName(resultFilename);
@@ -75,7 +81,7 @@ public class CategoryService {
         CategoryStyle categoryStyle = new CategoryStyle(styleName, styleDesciption, category);
 
         String filename = stringService.replaceChar(file.getOriginalFilename(), " ", "_");
-        File uploadDir = new File(uploadStylePath);
+        File uploadDir = new File(stylePath);
 
         if (!uploadDir.exists()) {
             uploadDir.mkdir();
@@ -83,7 +89,7 @@ public class CategoryService {
         String uuidFile = UUID.randomUUID().toString();
         String resultFilename = uuidFile + "." + filename;
 
-            File output = new File(uploadStylePath +  "/" + resultFilename);
+            File output = new File(stylePath +  "/" + resultFilename);
             ImageIO.write(imageService.resizeImage(file.getBytes(), 300, 400), "png", output);
 
         categoryStyle.setStyleImage(resultFilename);
@@ -92,5 +98,25 @@ public class CategoryService {
 
     public Iterable<CategoryStyle>getCategoryStyles(long categoryId) {
         return categoryStyleRepo.findByCategoryId(categoryId);
+    }
+
+    public void deleteCategory(Category category) {
+        Iterable<CategoryStyle> categoryStyles = getCategoryStyles(category.getId());
+        for (CategoryStyle categoryStyle: categoryStyles) {
+            deleteCategoryStyle(categoryStyle);
+        }
+        File file = new File(categoryPath + "/" + category.getFileName());
+        categoryRepo.delete(category);
+        file.delete();
+    }
+
+    public void deleteCategoryStyle(CategoryStyle categoryStyle) {
+        Iterable<StyleExample> styleExamples = exampleService.getStyleExamples(categoryStyle.getId());
+        for (StyleExample styleExample : styleExamples) {
+            exampleService.deleteStyleExample(styleExample);
+        }
+        File file = new File(stylePath + "/" + categoryStyle.getStyleImage());
+        categoryStyleRepo.delete(categoryStyle);
+        file.delete();
     }
 }

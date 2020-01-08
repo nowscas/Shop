@@ -44,4 +44,10 @@ public class StyleExampleImageService {
         styleExampleImageRepo.save(styleExampleImage);
         return styleExampleImage;
     }
+
+    public void deleteExampleImage(StyleExampleImage styleExampleImage) {
+        File file = new File(uploadPath + "/" + styleExampleImage.getImagePath());
+        styleExampleImageRepo.delete(styleExampleImage);
+        file.delete();
+    }
 }

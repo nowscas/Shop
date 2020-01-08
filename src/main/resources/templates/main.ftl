@@ -42,6 +42,9 @@
                         ${category.categoryName}
                     </div>
                     <a href="/categoryPage/${category.id}"><img src="/catImg/${category.fileName}" class="card-img-top"></a>
+                    <#if isAdmin>
+                        <a href="/deleteCategory/${category.id}">Удалить</a>
+                    </#if>
                 </div>
             </#list>
          </div>
