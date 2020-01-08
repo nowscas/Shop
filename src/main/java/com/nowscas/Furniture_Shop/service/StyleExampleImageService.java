@@ -40,13 +40,13 @@ public class StyleExampleImageService {
         File output = new File(uploadPath +  "/" + resultFilename);
         ImageIO.write(imageService.resizeImage(file.getBytes(), 650, 850), "png", output);
 
-        styleExampleImage.setImagePath(resultFilename);
+        styleExampleImage.setFileName(resultFilename);
         styleExampleImageRepo.save(styleExampleImage);
         return styleExampleImage;
     }
 
     public void deleteExampleImage(StyleExampleImage styleExampleImage) {
-        File file = new File(uploadPath + "/" + styleExampleImage.getImagePath());
+        File file = new File(uploadPath + "/" + styleExampleImage.getFileName());
         styleExampleImageRepo.delete(styleExampleImage);
         file.delete();
     }

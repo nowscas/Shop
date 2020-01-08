@@ -58,7 +58,7 @@ public class ExampleService {
         File output = new File(uploadPath +  "/" + resultFilename);
         ImageIO.write(imageService.resizeImage(file.getBytes(), 300, 400), "png", output);
 
-        styleExample.setExampleImage(resultFilename);
+        styleExample.setFileName(resultFilename);
         styleExampleRepo.save(styleExample);
     }
 
@@ -67,7 +67,7 @@ public class ExampleService {
         for (StyleExampleImage styleExampleImage: exampleImages) {
             styleExampleImageService.deleteExampleImage(styleExampleImage);
         }
-        File file = new File(uploadPath + "/" + styleExample.getExampleImage());
+        File file = new File(uploadPath + "/" + styleExample.getFileName());
         styleExampleRepo.delete(styleExample);
         file.delete();
     }

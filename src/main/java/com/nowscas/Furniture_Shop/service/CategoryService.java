@@ -5,8 +5,6 @@ import com.nowscas.Furniture_Shop.domain.CategoryStyle;
 import com.nowscas.Furniture_Shop.domain.StyleExample;
 import com.nowscas.Furniture_Shop.repos.CategoryRepo;
 import com.nowscas.Furniture_Shop.repos.CategoryStyleRepo;
-import com.nowscas.Furniture_Shop.repos.StyleExampleImageRepo;
-import com.nowscas.Furniture_Shop.repos.StyleExampleRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -92,7 +90,7 @@ public class CategoryService {
             File output = new File(stylePath +  "/" + resultFilename);
             ImageIO.write(imageService.resizeImage(file.getBytes(), 300, 400), "png", output);
 
-        categoryStyle.setStyleImage(resultFilename);
+        categoryStyle.setFileName(resultFilename);
         categoryStyleRepo.save(categoryStyle);
     }
 
@@ -115,7 +113,7 @@ public class CategoryService {
         for (StyleExample styleExample : styleExamples) {
             exampleService.deleteStyleExample(styleExample);
         }
-        File file = new File(stylePath + "/" + categoryStyle.getStyleImage());
+        File file = new File(stylePath + "/" + categoryStyle.getFileName());
         categoryStyleRepo.delete(categoryStyle);
         file.delete();
     }

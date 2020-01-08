@@ -14,7 +14,7 @@ public class StyleExampleImage {
     @JoinColumn
     private StyleExample styleExample;
 
-    private String imagePath;
+    private String fileName;
 
     public StyleExampleImage(StyleExample styleExample) {
         this.styleExample = styleExample;
@@ -31,12 +31,12 @@ public class StyleExampleImage {
         this.id = id;
     }
 
-    public String getImagePath() {
-        return imagePath;
+    public String getFileName() {
+        return fileName;
     }
 
-    public void setImagePath(String imagePath) {
-        this.imagePath = imagePath;
+    public void setFileName(String fileName) {
+        this.fileName = fileName;
     }
 
     public StyleExample getStyleExample() {

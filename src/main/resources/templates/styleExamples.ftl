@@ -26,7 +26,7 @@
         <div class = "card-deck">
             <#list examples as example>
                 <div class="card my-3" data-toggle="modal" data-target="#${example.id}exampleModalCenter">
-                    <a><img src="/catExamples/${example.exampleImage}" class="card-img-top"></a>
+                    <a><img src="/catExamples/${example.fileName}" class="card-img-top"></a>
                 </div>
 
                 <div class="modal fade" id="${example.id}exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -52,11 +52,11 @@
                                         <#list example.exampleImages as image>
                                             <#if image_has_next>
                                                 <div class="carousel-item">
-                                                    <img class="d-block w-100" src="/catExamplesImages/${image.imagePath}">
+                                                    <img class="d-block w-100" src="/catExamplesImages/${image.fileName}">
                                                 </div>
                                             <#else>
                                                 <div class="carousel-item active">
-                                                    <img class="d-block w-100" src="/catExamplesImages/${image.imagePath}">
+                                                    <img class="d-block w-100" src="/catExamplesImages/${image.fileName}">
                                                 </div>
                                             </#if>
                                         </#list>

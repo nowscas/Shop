@@ -35,7 +35,7 @@
                     <div class="card-header">
                         ${style.styleName}
                     </div>
-                    <a href="/styleExample/${style.id}"><img src="/catStyle/${style.styleImage}" class="card-img-top"></a>
+                    <a href="/styleExample/${style.id}"><img src="/catStyle/${style.fileName}" class="card-img-top"></a>
                 </div>
             </#list>
         </div>

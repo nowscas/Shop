@@ -11,7 +11,7 @@ public class StyleExample {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    private String exampleImage;
+    private String fileName;
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name="category_style_id", referencedColumnName = "id")
@@ -35,12 +35,12 @@ public class StyleExample {
         this.id = id;
     }
 
-    public String getExampleImage() {
-        return exampleImage;
+    public String getFileName() {
+        return fileName;
     }
 
-    public void setExampleImage(String exampleImage) {
-        this.exampleImage = exampleImage;
+    public void setFileName(String fileName) {
+        this.fileName = fileName;
     }
 
     public CategoryStyle getCategoryStyle() {

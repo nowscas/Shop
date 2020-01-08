@@ -9,7 +9,7 @@ public class CategoryStyle {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    private String styleImage;
+    private String fileName;
     private String styleName;
 
     @Column(length = 2048)
@@ -44,12 +44,12 @@ public class CategoryStyle {
         this.category = category;
     }
 
-    public String getStyleImage() {
-        return styleImage;
+    public String getFileName() {
+        return fileName;
     }
 
-    public void setStyleImage(String styleImage) {
-        this.styleImage = styleImage;
+    public void setFileName(String fileName) {
+        this.fileName = fileName;
     }
 
     public Long getId() {
