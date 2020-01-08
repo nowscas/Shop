@@ -2,6 +2,7 @@ package com.nowscas.Furniture_Shop.controller;
 
 import com.nowscas.Furniture_Shop.domain.Category;
 import com.nowscas.Furniture_Shop.service.CategoryService;
+import com.nowscas.Furniture_Shop.service.StyleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,8 +19,11 @@ import static java.util.Objects.requireNonNull;
 
 @Controller
 public class CategoryController {
+
     @Autowired
     private CategoryService categoryService;
+    @Autowired
+    private StyleService styleService;
 
     /**
      * Метод возвращает страницу с категориями.
@@ -39,7 +43,7 @@ public class CategoryController {
       */
     @GetMapping("/categoryPage/{category}")
     public String getCategory(@PathVariable Category category, Model model) {
-        model.addAttribute("styles", categoryService.getCategoryStyles(category.getId()));
+        model.addAttribute("styles", styleService.getCategoryStyles(category.getId()));
         model.addAttribute("categoryId", category.getId());
         return "categoryPage";
     }
@@ -61,29 +65,6 @@ public class CategoryController {
             categoryService.createCategory(categoryName, file);
         }
         return "redirect:/";
-    }
-
-    /**
-     * Метот дает команду на сохранение стиля категории в БД и возвращает страницу стилей категории.
-     * @param categoryStyleName
-     * @param categoryId
-     * @param file
-     * @return
-     */
-    @PostMapping("/addCategoryStyle")
-    public String addCategoryStyle(
-            @RequestParam String categoryStyleName,
-            @RequestParam String categoryStyleDescription,
-            @RequestParam Long categoryId,
-            @RequestParam("file") MultipartFile file,
-            Map<String, Object> model) throws IOException {
-        if (file.isEmpty() || file.getSize() < 0 || !requireNonNull(file.getContentType()).contains("image")) {
-            model.put("message", "Выбран не подходящий файл!");
-            return "redirect:/categoryPage/" + categoryId;
-        } else {
-            categoryService.createCategoryStyle(categoryStyleName, categoryStyleDescription, categoryId, file);
-        }
-        return "redirect:/categoryPage/" + categoryId;
     }
 
     /**
