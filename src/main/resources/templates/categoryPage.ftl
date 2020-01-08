@@ -10,6 +10,9 @@
         <div style="margin:5% 10% 0 10%">
             <div class = "formLabel">Добавить стиль</div>
             <form action="/addCategoryStyle" method="post" enctype="multipart/form-data">
+
+                <div style="text-align: center; font-size: 200%; color: red">${message?ifExists}</div>
+
                 <div class="form-group">
                     <label for="formGroupStyleName">Название</label>
                     <input type="text" class="form-control" name="categoryStyleName" placeholder="Введите название">

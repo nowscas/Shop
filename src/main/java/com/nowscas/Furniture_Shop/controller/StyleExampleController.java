@@ -20,9 +20,9 @@ import java.util.Objects;
 @Controller
 public class StyleExampleController {
     @Autowired
-    ExampleService exampleService;
+    private ExampleService exampleService;
     @Autowired
-    StyleExampleImageService styleExampleImageService;
+    private StyleExampleImageService styleExampleImageService;
 
     /**
      * Метод возвращает страницу с конкретным стилем.

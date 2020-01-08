@@ -60,7 +60,8 @@ public class CategoryController {
             Map<String, Object> model) throws IOException {
         if (file.isEmpty() || file.getSize() < 0 || !requireNonNull(file.getContentType()).contains("image")) {
             model.put("message", "Выбран не подходящий файл!");
-            return "addCategory";
+            model.put("categories", categoryService.getAllCategories());
+            return "main";
         } else {
             categoryService.createCategory(categoryName, file);
         }

@@ -21,6 +21,9 @@
          <#if isAdmin>
              <div class = "addForm">
                  <div class = "formLabel">Добавить категорию</div>
+
+                 <div style="text-align: center; font-size: 200%; color: red">${message?ifExists}</div>
+
                  <form action="/addCategory" method="post" enctype="multipart/form-data">
                      <div class="form-group">
                          <label for="formGroupCategoryName">Название</label>
